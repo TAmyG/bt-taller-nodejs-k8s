@@ -19,10 +19,28 @@ const apiMock = (input = 0) => {
     })
 }
 
-apiMock(2)
-    .then((resultado) => {
+// apiMock(1)
+//     .then((resultado) => {
+//         console.log(resultado);
+//         return apiMock(2)
+//     })
+//     .then((resultado2) => {
+//         console.log(resultado2)
+//     })
+//     .catch((error) => {
+//         console.error('Error: ', error);
+//     })
+
+
+// Async y Await
+const main = async () => {
+    try {
+        const resultado = await apiMock(2);
         console.log(resultado);
-    })
-    .catch((error) => {
-        console.error('Error: ', error);
-    })
+    } catch (error) {
+        console.error('Error: ', error)
+    }
+
+}
+
+main();
