@@ -50,8 +50,27 @@ app.get('/posts/:id/comments', (req, res)=>{
     res.send(comentariosPostId[req.params.id] || []);
 })
 
-app.post('/events', (req, res)=>{
+app.post('/events', async(req, res)=>{
     console.log('Evento recibido: ', req.body.type)
+    const {type, data} = req.body;
+    if(type === 'ComentarioModerado'){
+        // Logica para actualizar estatus del comentario
+        const {postId, id, contenido, status} = data;
+        const comentarios = comentariosPostId[postId];
+
+        const comentario = comentarios.find((com)=>{
+            return com.id === id;
+        })
+        comentario.status = status;
+        await axios.post('http://localhost:4005/events', {
+            type: 'ComentarioActualizado',
+            data: {
+                id, status, contenido, postId
+            }
+        }). catch(err=>{
+            console.error(err)
+        })
+    }
     res.send({});
 })
 
