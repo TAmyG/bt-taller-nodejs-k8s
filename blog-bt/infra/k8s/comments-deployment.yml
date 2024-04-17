@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: comments-depl
 spec:
   replicas: 1
   selector:
-    # posts-depl va tomar como suyos todos los pods que tengan una etiqueta app:posts
+    # comments-depl va tomar como suyos todos los pods que tengan una etiqueta app:comments
     matchLabels:
-      app: posts
+      app: comments
   template: # Me ayuda a definir metadata a los objetos de este deployment
     metadata:
       labels: # Agrego una etiqueta a los recursos que estan en este deployment
-        app: posts
+        app: comments
     spec:
       containers:
-        - name: posts
-          image: bantrab/ms-posts
+        - name: comments
+          image: bantrab/ms-comments
           imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-srv
+  name: comments-srv
 spec:
-  #type: NodePort
+  # type: NodePort
   selector:
-    app: posts
+    app: comments
   ports:
-    - name: posts
+    - name: comments
       protocol: TCP
-      port: 4000
-      targetPort: 4000
-    #   nodePort: 30000
+      port: 4001
+      targetPort: 4001
+    #  nodePort: 30001

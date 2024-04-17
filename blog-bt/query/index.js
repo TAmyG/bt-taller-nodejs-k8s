@@ -55,7 +55,7 @@ app.get('/posts', (req, res)=>{
 app.listen(port, async() => {
     console.log(`Example app listening on port ${port}`)
     try {
-        const res = await axios.get('http://localhost:4005/events');
+        const res = await axios.get('http://event-bus-srv:4005/events');
 
         for(let evento of res.data){
             console.log('Procesando evento', evento.type)

@@ -16,10 +16,10 @@ app.post('/events', (req, res)=>{
     console.log('Event Bus: ', evento.type)
 
     // Logica para enviar eventos a los consumers
-    axios.post('http://localhost:4000/events', evento).catch(err=>{console.error(err.message)})
-    axios.post('http://localhost:4001/events', evento).catch(err=>{console.error(err.message)})
-    axios.post('http://localhost:4002/events', evento).catch(err=>{console.error(err.message)})
-    axios.post('http://localhost:4003/events', evento).catch(err=>{console.error(err.message)})
+    axios.post('http://posts-srv:4000/events', evento).catch(err=>{console.error(err.message)})
+    axios.post('http://comments-srv:4001/events', evento).catch(err=>{console.error(err.message)})
+    axios.post('http://query-srv:4002/events', evento).catch(err=>{console.error(err.message)})
+    axios.post('http://moderation-srv:4003/events', evento).catch(err=>{console.error(err.message)})
 
     res.send({status: 'OK'});
 });

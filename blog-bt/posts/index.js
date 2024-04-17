@@ -21,7 +21,7 @@ app.post('/posts/create', async(req, res) => {
     }
 
     //Notificar al MQ que se acaba de crear un post
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
         type: 'PostCreado',
         data: {
             id: id,
