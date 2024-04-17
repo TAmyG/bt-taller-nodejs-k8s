@@ -8,7 +8,7 @@ const CommentCreate = ({ postId }) => {
     event.preventDefault();
 
     await axios.post(`http://posts.com/posts/${postId}/comments`, {
-      content,
+      contenido: content,
     });
 
     setContent("");

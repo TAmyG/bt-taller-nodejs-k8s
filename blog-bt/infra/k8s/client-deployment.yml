@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-depl
+spec:
+  replicas: 1
+  selector:
+    # client-depl va tomar como suyos todos los pods que tengan una etiqueta app:client
+    matchLabels:
+      app: client
+  template: # Me ayuda a definir metadata a los objetos de este deployment
+    metadata:
+      labels: # Agrego una etiqueta a los recursos que estan en este deployment
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: bantrab/ms-client
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-srv
+spec:
+  #type: NodePort
+  selector:
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+    #   nodePort: 30000

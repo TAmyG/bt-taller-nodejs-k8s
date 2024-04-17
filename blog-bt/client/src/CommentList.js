@@ -6,15 +6,15 @@ const CommentList = ({ comments }) => {
   const renderedComments = comments.map((comment) => {
     let content;
 
-    if (comment.status === "approved") {
-      content = comment.content;
+    if (comment.status === "aprobado") {
+      content = comment.contenido;
     }
 
-    if (comment.status === "pending") {
+    if (comment.status === "pendiente") {
       content = "This comment is awaiting moderation";
     }
 
-    if (comment.status === "rejected") {
+    if (comment.status === "rechazado") {
       content = "This comment has been rejected";
     }
 
